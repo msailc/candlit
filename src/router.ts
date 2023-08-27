@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import passport from "passport";
-import {ProjectController} from "./controllers/ProjectController";
-import {UserController} from "./controllers/UserController";
+import {ProjectController} from "./controllers/project.controller";
 
 const router = Router();
+
+const projectController = new ProjectController();
 
 router.get('/auth/github', passport.authenticate('github'));
 router.get('/auth/github/callback',
@@ -12,12 +13,9 @@ router.get('/auth/github/callback',
         console.log("success");
     });
 
+router.get('/projects', projectController.getAll.bind(projectController));
+router.get('/projects/:id', projectController.getById.bind(projectController));
+router.post('/projects', projectController.add.bind(projectController));
 
-router.post('/projects', ProjectController.createProject);
-router.get('/projects', ProjectController.getAllProjects);
-router.get('/projects/:id', ProjectController.getProjectById);
-
-router.get('/users/:id', UserController.getUserById);
-router.get('/users', UserController.getAllUsers);
 
 export default router;

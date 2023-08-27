@@ -1,7 +1,6 @@
 import express from 'express';
-import { ProjectController } from './controllers/ProjectController';
 import dotenv from 'dotenv';
-import { db } from "./database/dbContext";
+import { db } from "./database/database.context";
 import router from "./router";
 
 const passport = require('passport');
@@ -63,7 +62,7 @@ passport.deserializeUser(async (id: number, done: (error: any, user: any) => voi
 });
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
