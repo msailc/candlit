@@ -10,6 +10,7 @@ const app = express();
 app.use(express.json());
 
 app.post('/projects', ProjectController.createProject);
+app.get('/projects', ProjectController.getAllProjects);
 
 const PORT = process.env.PORT || 3000;
 

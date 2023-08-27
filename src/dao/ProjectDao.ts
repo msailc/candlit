@@ -1,14 +1,22 @@
-// src/dao/ProjectDAO.ts
-import { Project } from '../interfaces/Project';
-import {db} from "../database/dbContext";
+import { BaseDao } from "./BaseDao";
+import { Project } from "../interfaces/Project";
 
-export class ProjectDao {
-    static async create(project: Project): Promise<Project> {
-        const query = 'INSERT INTO projects (name) VALUES ($1) RETURNING *';
+export class ProjectDao extends BaseDao {
+    static async createProject(project: Project): Promise<Project> {
+        const columns = ['name'];
         const values = [project.name];
+        const returning = ['id', 'name'];
 
-        const result = await db.query(query, values);
-        return result.rows[0];
+        const createdProject = await this.create('projects', columns, returning, ...values);
+        return createdProject as Project;
     }
 
+    static async getAllProjects(offset: number, limit: number): Promise<Project[]> {
+        const projects = await this.getAll('projects', offset, limit);
+        return projects as Project[];
+    }
+
+    static async getProjectsCount(): Promise<number> {
+        return this.getItemCount('projects');
+    }
 }
