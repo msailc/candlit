@@ -11,6 +11,11 @@ export class ProjectDao extends BaseDao {
         return createdProject as Project;
     }
 
+    static async getProjectById(id: number): Promise<Project> {
+        const project = await this.getOne('projects', id);
+        return project as Project;
+    }
+
     static async getAllProjects(offset: number, limit: number): Promise<Project[]> {
         const projects = await this.getAll('projects', offset, limit);
         return projects as Project[];

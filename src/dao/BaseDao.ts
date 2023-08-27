@@ -16,6 +16,12 @@ export class BaseDao {
         return result.rows;
     }
 
+    static async getOne(table: string, id: number): Promise<any> {
+        const query = `SELECT * FROM ${table} WHERE id = $1`;
+        const result = await db.query(query, [id]);
+        return result.rows[0];
+    }
+
     static async getItemCount(table: string): Promise<number> {
         const query = `SELECT COUNT(*) FROM ${table}`;
         const result = await db.query(query, []);

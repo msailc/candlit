@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
-import { ProjectService } from '../services/ProjectService';
+import { BaseService } from '../services/BaseService';
 import { Project } from '../interfaces/Project';
+import { ProjectService } from "../services/ProjectService";
 
 export class ProjectController {
     static async createProject(req: Request, res: Response): Promise<void> {
@@ -8,7 +9,8 @@ export class ProjectController {
             const { name } = req.body;
             const project: Project = { name };
 
-            const createdProject = await ProjectService.createProject(project);
+            const projectService = new ProjectService();
+            const createdProject = await projectService.create(['name'], ['id', 'name'], project);
 
             res.status(201).json(createdProject);
         } catch (error) {
@@ -22,7 +24,8 @@ export class ProjectController {
             const page = parseInt(req.query.page as string) || 1;
             const pageSize = parseInt(req.query.pageSize as string) || 20;
 
-            const { projects, totalItems } = await ProjectService.getAllProjects(page, pageSize);
+            const projectService = new ProjectService();
+            const { items: projects, totalItems } = await projectService.getAllPaginated(page, pageSize);
 
             res.status(200).json({ totalItems, page, pageSize, projects });
         } catch (error) {
