@@ -33,4 +33,17 @@ export class ProjectController {
             res.status(500).json({ message: 'Internal server error' });
         }
     }
+
+    static async getProjectById(req: Request, res: Response): Promise<void> {
+        try {
+            const id = parseInt(req.params.id);
+            const projectService = new ProjectService();
+            const project = await projectService.getById(id);
+
+            res.status(200).json(project);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Internal server error' });
+        }
+    }
 }

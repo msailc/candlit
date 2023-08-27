@@ -14,4 +14,9 @@ export class BaseService {
         const totalItems = await BaseDao.getItemCount(this.entityName);
         return { items, totalItems };
     }
+
+    async getById(id: number): Promise<any> {
+        const entity = await BaseDao.getOne(this.entityName, id);
+        return entity;
+    }
 }

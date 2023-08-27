@@ -20,8 +20,4 @@ export class ProjectDao extends BaseDao {
         const projects = await this.getAll('projects', offset, limit);
         return projects as Project[];
     }
-
-    static async getProjectsCount(): Promise<number> {
-        return this.getItemCount('projects');
-    }
 }
