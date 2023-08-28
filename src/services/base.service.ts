@@ -1,5 +1,5 @@
 import {BaseDao} from "../dao/base.dao";
-import {CommonService} from "./interface/service.interface";
+import {CommonService} from "./interfaces/service.interface";
 
 export class BaseService implements CommonService {
     protected dao: BaseDao;

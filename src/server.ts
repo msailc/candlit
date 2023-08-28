@@ -3,6 +3,9 @@ import dotenv from 'dotenv';
 import { db } from "./database/database.context";
 import router from "./router";
 
+import swaggerUi from 'swagger-ui-express';
+import * as swaggerDocument from './swagger/swagger_output.json';
+
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;
 const session = require('express-session');
@@ -18,6 +21,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(router);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
