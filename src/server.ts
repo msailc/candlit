@@ -12,11 +12,12 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.use(router);
 
 app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(router);
 
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
@@ -62,7 +63,7 @@ passport.deserializeUser(async (id: number, done: (error: any, user: any) => voi
 });
 
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

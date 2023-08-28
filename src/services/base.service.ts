@@ -1,7 +1,8 @@
 import {BaseDao} from "../dao/base.dao";
+import {CommonService} from "./interface/service.interface";
 
-export class BaseService {
-    private dao: BaseDao;
+export class BaseService implements CommonService {
+    protected dao: BaseDao;
 
     constructor(dao: BaseDao) {
         this.dao = dao;
