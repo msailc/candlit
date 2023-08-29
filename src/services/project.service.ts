@@ -7,10 +7,10 @@ class ProjectService extends BaseService {
         super(projectDao);
     }
 
-    async assign_team(projectId: string, teamId: string): Promise<boolean> {
+    async assignTeam(projectId: string, teamId: string): Promise<boolean> {
         try {
             const projectDao = this.dao as ProjectDao;
-            const success = await projectDao.assign_team(projectId, teamId);
+            const success = await projectDao.assignTeam(projectId, teamId);
             return success;
         } catch (error) {
             console.error("Error in assign_team:", error);

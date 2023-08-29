@@ -59,6 +59,16 @@
         }
       }
     },
+    "/projects/assign-team": {
+      "post": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/users": {
       "get": {
         "description": "",
@@ -108,6 +118,26 @@
       }
     },
     "/teams/add-member": {
+      "post": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/jobs": {
+      "post": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/jobs/pipeline-step": {
       "post": {
         "description": "",
         "responses": {

@@ -6,7 +6,7 @@ export class ProjectDao extends BaseDao {
         super('projects');
     }
 
-    async assign_team(projectId: string, teamId: string): Promise<boolean> {
+    async assignTeam(projectId: string, teamId: string): Promise<boolean> {
         const query = `UPDATE projects SET team_id = $1 WHERE id = $2`;
         const params = [teamId, projectId];
 

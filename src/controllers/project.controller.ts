@@ -13,7 +13,7 @@ export class ProjectController extends BaseController {
             const { projectId, teamId } = req.body;
             if (projectId && teamId) {
                 const projectService = this.service as ProjectService;
-                const success = await projectService.assign_team(projectId, teamId);
+                const success = await projectService.assignTeam(projectId, teamId);
                 if (success) {
                     this.sendSuccessResponse(res, { message: 'Team assigned successfully.' }, 201);
                 } else {
