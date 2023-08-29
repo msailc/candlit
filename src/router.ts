@@ -20,6 +20,7 @@ router.get('/auth/github/callback',
 router.get('/projects', projectController.getAll.bind(projectController));
 router.get('/projects/:id', projectController.getById.bind(projectController));
 router.post('/projects', projectController.add.bind(projectController));
+router.post('/projects/assign-team', projectController.assignTeam.bind(projectController));
 
 router.get('/users', userController.getAll.bind(userController));
 router.get('/users/:id', userController.getById.bind(userController));

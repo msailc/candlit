@@ -1,8 +1,6 @@
-// team.controller.ts
 import { BaseController } from "./base.controller";
 import { TeamService } from "../services/team.service";
 import { Request, Response } from 'express';
-import {TeamDao} from "../dao/team.dao";
 
 export class TeamController extends BaseController {
     constructor() {
